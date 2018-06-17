@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3CC8C8</color>
+    <color name="colorSecond">#26B4C4</color>
+    <color name="colorPrimaryDark">#0Ca8a8</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparents">#00000000</color>
+
+
+    <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_d9d9d9">#d9d9d9</color>
+    <color name="color_e7e7e7">#d9d9d9</color>
+    
+    <color name="color_333333">#333333</color>
+    <color name="textColorShallow">#999999</color>
+    <color name="second_divider_line">#999999</color>
+    
+    <color name="btn_alert">#FF965A</color>
+    <color name="btn_alert_pressed">#eF864A</color>
+    <color name="btn_primary">#4BC0C3</color>
+    <color name="btn_primary_pressed">#0Ca8a8</color>
+    
+    <color name="btn_ffc800">#FFC800</color>
+    <color name="btn_14c83c">#14C83C</color>
+    
+    <color name="color_ffffff">#ffffff</color>
+    <color name="textColorblack">#333333</color>
+    <color name="color_ef3916">#EF3916</color>
+    
+    <color name="color_ffcb4e">#FFCB4E</color>
+    
+    
+    
+    <color name="color_14B4C8">#14B4C8</color>
+    <color name="color_EF3916">#EF3916</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_d8d8d8">#D8D8D8</color>
+    <color name="color_00A0FF">#00A0FF</color>
+    
+    <color name="color_000000">#000000</color>
+
+    
+
+
+    <!--分割线的颜色-->
+    <color name="diverColor">#cccccc</color>
+    <!--控件未点击色和点击色-->
+    <color name="color_cccccc">#cccccc</color>
+    <color name="clickColorNo">#14b4c8</color>
+
+    <color name="textColorGray">#D8D8D8</color>
+    <color name="text_primary">#DF000000</color>
+	<color name = "white">#fff</color>
+    
+    <!--聊天-->
+    <color name="line">#DDDDDD</color>
+    <color name="background_gray1">#EBEBEB</color>
+    <color name="text_gray1">#777777</color>
+    <color name="line_btn">#BBBBBB</color>
+    <color name="text_blue1">#1173CB</color>
+    <color name="color_1173ca">#1173CA</color>
+    <color name="color_d4d4d4">#D4D4D4</color>
+    
+    <color name="color_767676">#767676</color>
+    <color name="color_ff4a57">#ff4a57</color>
+	<color name = "color_f6">#f6f6f6</color>
+	<color name = "comment_divider">#cccccc</color>
+	<color name = "bg_app">#F1F1F1</color>
+
+</resources>

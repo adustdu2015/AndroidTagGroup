@@ -9,73 +9,105 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tags_default"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_prompt"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:text="@string/add_tags"
-        android:textColor="@android:color/darker_gray" />
+        android:layout_height="match_parent">
 
-    <me.gujun.android.taggroup.TagGroup
-        android:id="@+id/tag_group"
-        style="@style/TagGroup"
-        android:layout_marginTop="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="#DDD" />
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录" />
 
-    <me.gujun.android.taggroup.TagGroup
-        android:id="@+id/tag_group_beauty"
-        style="@style/TagGroup.Beauty_Red"
-        android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/icons"
+                android:textColor="@color/colorPrimary"
+                android:textSize="26dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="#DDD" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mic"
+                android:textColor="@color/color_333333"
+                android:textSize="26dp" />
 
-    <me.gujun.android.taggroup.TagGroup
-        android:id="@+id/tag_group_beauty_inverse"
-        style="@style/TagGroup.Beauty_Red.Inverse"
-        android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tags_default"
+                android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/tags_small"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/add_tags"
+                android:textColor="@android:color/darker_gray" />
 
-    <me.gujun.android.taggroup.TagGroup
-        android:id="@+id/tag_group_small"
-        style="@style/TagGroup.Small"
-        android:layout_marginTop="10dp" />
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group"
+                style="@style/TagGroup"
+                android:layout_marginTop="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/tags_large"
-        android:textSize="18sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#DDD" />
 
-    <me.gujun.android.taggroup.TagGroup
-        android:id="@+id/tag_group_large"
-        style="@style/TagGroup.Large"
-        android:layout_marginTop="10dp" />
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group_beauty"
+                style="@style/TagGroup.Beauty_Red"
+                android:layout_marginTop="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#DDD" />
+
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group_beauty_inverse"
+                style="@style/TagGroup.Beauty_Red.Inverse"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/tags_small"
+                android:textSize="14sp" />
+
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group_small"
+                style="@style/TagGroup.Small"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/tags_large"
+                android:textSize="18sp" />
+
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group_large"
+                style="@style/TagGroup.Large"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

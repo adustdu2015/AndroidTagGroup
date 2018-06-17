@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.1'
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion 21
     }
     lintOptions {

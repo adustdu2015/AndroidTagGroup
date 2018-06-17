@@ -7,4 +7,6 @@
     <string name="tags_large">标签(大号)</string>
     <string name="submit" translatable="false">Submit</string>
     <string name="edit" translatable="false">Edit</string>
+    <string name="icons">&#xe6ec;</string>
+    <string name="mic">&#xe64c;</string>
 </resources>
