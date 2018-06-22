@@ -22,6 +22,7 @@ import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import me.gujun.android.taggroup.TagGroup;
 import me.gujun.android.taggroup.demo.db.TagsManager;
@@ -33,6 +34,7 @@ import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import xyz.bboylin.universialtoast.UniversalToast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -81,8 +83,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick( final View v ) {
                 bookPresenter.getSearchBooks("金瓶梅", null, 0, 1);
+                UniversalToast.makeText(mContext, "点击了按钮", UniversalToast.LENGTH_SHORT).show();
             }
         });
+//        RxView.clicks(btn_login).
+//                throttleFirst(1, TimeUnit.SECONDS)//防抖操作
+//                .subscribe((Consumer<? super Object>) observer);
+
+
         bookPresenter.onCreate();
         bookPresenter.attachView(mBookView);
 
