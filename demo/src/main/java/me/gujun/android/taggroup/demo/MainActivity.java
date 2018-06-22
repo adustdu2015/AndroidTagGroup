@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.gyf.barlibrary.ImmersionBar;
 import com.hwangjr.rxbus.annotation.Produce;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ImmersionBar.with(this).destroy(); //不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
         bookPresenter.onStop();
         RxBus.get().unregister(this);
     }
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory(getLayoutInflater(),new IconfontLayoutFactory(this,getDelegate()));
         super.onCreate(savedInstanceState);
+        ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).
+                init(); //初始化，默认透明状态栏和黑色导航栏
         setContentView(R.layout.activity_main);
         mContext = this;
         RxBus.get().register(this);
