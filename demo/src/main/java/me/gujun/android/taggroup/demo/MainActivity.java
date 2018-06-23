@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.classic.common.MultipleStatusView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hwangjr.rxbus.annotation.Produce;
 import com.hwangjr.rxbus.annotation.Subscribe;
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private TagsManager mTagsManager;
     Button btn_login;
     List<String> aTag = new ArrayList<>();
+    MultipleStatusView multipleStatusView;
+
     private BookPresenter bookPresenter = new BookPresenter(this);
 
     @BindView(R.id.tag_groups)
@@ -98,7 +101,14 @@ public class MainActivity extends AppCompatActivity {
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).
                 init(); //初始化，默认透明状态栏和黑色导航栏
         setContentView(R.layout.activity_main);
-
+        multipleStatusView = findViewById(R.id.multiple_status_view);
+        multipleStatusView.showEmpty();
+        multipleStatusView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                multipleStatusView.showLoading();
+            }
+        },3000);
 //        addOneNewTag();
 
 
