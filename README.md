@@ -24,3 +24,6 @@ tags: retrofit,rxjava,学习MVP
         .init();
 ```
 
+**总结一下，确实是最近写的Activity太冗长啦，而且逻辑也是不太好顺啦。
+只想说MVP就是想把网络请求的内容给了Presenter，并且Presenter将网络请求的结果传递给View展示。
+,让View专注于视图的展示。**

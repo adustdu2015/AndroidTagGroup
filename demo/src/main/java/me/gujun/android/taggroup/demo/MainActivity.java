@@ -2,6 +2,7 @@ package me.gujun.android.taggroup.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.LayoutInflaterCompat;
@@ -20,14 +21,21 @@ import com.hwangjr.rxbus.annotation.Produce;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
+import com.jacksen.taggroup.ITagBean;
+import com.jacksen.taggroup.SuperTagGroup;
+import com.jacksen.taggroup.SuperTagUtil;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
 import me.gujun.android.taggroup.TagGroup;
 import me.gujun.android.taggroup.demo.db.TagsManager;
 import me.gujun.android.taggroup.demo.service.presenter.BookPresenter;
 import me.gujun.android.taggroup.demo.service.view.BookView;
+import me.next.tagview.TagCloudView;
 import rx.Observable;
 import rx.Observer;
 import rx.Scheduler;
@@ -45,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private TagGroup mLargeTagGroup;
     private TagGroup mBeautyTagGroup;
     private TagGroup mBeautyInverseTagGroup;
-
+    TagCloudView tag_cloud_view_8;
     private TagsManager mTagsManager;
     Button btn_login;
-
+    List<String> aTag = new ArrayList<>();
     private BookPresenter bookPresenter = new BookPresenter(this);
+
+    @BindView(R.id.tag_groups)
+    public SuperTagGroup tag_groups;
+
 
     private TagGroup.OnTagClickListener mTagClickListener = new TagGroup.OnTagClickListener() {
         @Override
@@ -67,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
         bookPresenter.onStop();
         RxBus.get().unregister(this);
     }
+    public void addOneNewTag() {
+        ITagBean.Builder builder = new ITagBean.Builder();
+        ITagBean tagBean = builder.setTag("测试君")
+                .setCornerRadius(SuperTagUtil.dp2px(this, 0.5f))
+                .setHorizontalPadding(SuperTagUtil.dp2px(this, 10))
+                .setVerticalPadding(SuperTagUtil.dp2px(this, 4))
+                .setBgColor(Color.parseColor("#4bc0c3"))
+                .create();
+        tag_groups.appendTag(tagBean);
+    }
 
 
     @Override
@@ -76,20 +98,27 @@ public class MainActivity extends AppCompatActivity {
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).
                 init(); //初始化，默认透明状态栏和黑色导航栏
         setContentView(R.layout.activity_main);
+
+//        addOneNewTag();
+
+
+
         mContext = this;
         RxBus.get().register(this);
         btn_login = findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( final View v ) {
-                bookPresenter.getSearchBooks("金瓶梅", null, 0, 1);
-                UniversalToast.makeText(mContext, "点击了按钮", UniversalToast.LENGTH_SHORT).show();
-            }
-        });
-//        RxView.clicks(btn_login).
-//                throttleFirst(1, TimeUnit.SECONDS)//防抖操作
-//                .subscribe((Consumer<? super Object>) observer);
 
+        for (int i = 0; i < 20; i++) {
+            aTag.add("标签" + i);
+        }
+        tag_cloud_view_8  = findViewById(R.id.tag_cloud_view_8);
+        tag_cloud_view_8.setTags(aTag);
+
+        RxView.clicks(btn_login).throttleFirst(1,TimeUnit.SECONDS)//防抖操作
+                .subscribe(v->{
+
+                    bookPresenter.getSearchBooks("金瓶梅", null, 0, 1);
+                    UniversalToast.makeText(mContext, "点击了按钮", UniversalToast.LENGTH_SHORT).show();
+                });
 
         bookPresenter.onCreate();
         bookPresenter.attachView(mBookView);

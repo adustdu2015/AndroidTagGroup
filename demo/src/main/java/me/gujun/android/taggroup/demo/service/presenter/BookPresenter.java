@@ -13,6 +13,14 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
+/**
+ * 请求book的presenter,继承子Presenter
+ * 主要implements三个方法
+ * onCreate用于初始化数据内容
+ * onStop  如果Activity finish啦，则将订阅事件取消掉。
+ * attachView用于绑定视图
+ * BookView只有两个方法，一个是成功的回调，一个是失败的回调。
+ */
 public class BookPresenter implements Presenter {
     private DataManager manager;
     private CompositeSubscription mCompositeSubscription;

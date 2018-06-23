@@ -10,6 +10,10 @@ android {
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,8 +45,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     implementation 'io.reactivex:rxandroid:1.2.0'
     implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     //rxbinding防抖操作的使用
-//    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    //RxBinding
+    implementation ('com.jakewharton.rxbinding2:rxbinding:2.0.0') {
+        exclude group: 'com.android.support'
+    }
     //状态栏解决
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     implementation ('com.hwangjr.rxbus:rxbus:1.0.6') {
@@ -51,4 +59,9 @@ dependencies {
     //toast
 //    项目地址:https://github.com/bboylin/UniversalToast
     implementation 'com.github.bboylin:UniversalToast:v1.0.8'
+
+    //标签云
+    implementation 'com.github.kingideayou:tagcloudview:1.0.2'
+    //标签
+    implementation 'com.jacksen:supertaggroup:1.1'
 }
