@@ -1,4 +1,4 @@
-package me.gujun.android.taggroup.demo;
+package me.gujun.android.taggroup.demo.util;
 
 import android.content.Context;
 import android.graphics.Typeface;

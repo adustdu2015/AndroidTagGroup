@@ -1,4 +1,4 @@
-package me.gujun.android.taggroup.demo;
+package me.gujun.android.taggroup.demo.util;
 
 import com.hwangjr.rxbus.Bus;
 

@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.apkfuns.logutils:library:1.5.1.1'
     implementation 'com.jakewharton:butterknife:8.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -46,14 +47,17 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.0'
     implementation 'com.google.code.gson:gson:2.6.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    //butterknife 注解
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //rxbinding防抖操作的使用
     //RxBinding
-    implementation ('com.jakewharton.rxbinding2:rxbinding:2.0.0') {
+    implementation('com.jakewharton.rxbinding2:rxbinding:2.0.0') {
         exclude group: 'com.android.support'
     }
     //状态栏解决  https://github.com/gyf-dev/ImmersionBar
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
-    implementation ('com.hwangjr.rxbus:rxbus:1.0.6') {
+    implementation('com.hwangjr.rxbus:rxbus:1.0.6') {
         exclude group: 'com.jakewharton.timber', module: 'timber'
     }
     //toast通用，解决关闭通知栏之后的处理

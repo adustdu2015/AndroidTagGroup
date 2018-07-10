@@ -25,7 +25,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="登录" />
-
+            <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一页"
+            />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,15 +162,7 @@
                     app:vertical_padding="6dp" />
 
             </com.jacksen.taggroup.SuperTagGroup>
-            <com.classic.common.MultipleStatusView
-                android:id="@+id/multiple_status_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:loadingView="@layout/custom_loading_view"
-                app:emptyView="@layout/custom_empty_view"
-                app:errorView="@layout/custom_error_view"
-                app:noNetworkView="@layout/custom_no_network_view"
-                app:contentView="@layout/content_text"/>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

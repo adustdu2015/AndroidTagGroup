@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
-import com.classic.common.MultipleStatusView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hwangjr.rxbus.annotation.Produce;
 import com.hwangjr.rxbus.annotation.Subscribe;
@@ -32,14 +31,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.gujun.android.taggroup.TagGroup;
 import me.gujun.android.taggroup.demo.db.TagsManager;
 import me.gujun.android.taggroup.demo.service.presenter.BookPresenter;
 import me.gujun.android.taggroup.demo.service.view.BookView;
+import me.gujun.android.taggroup.demo.util.IconfontLayoutFactory;
+import me.gujun.android.taggroup.demo.util.RxBus;
 import me.next.tagview.TagCloudView;
 import rx.Observable;
-import rx.Observer;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -47,6 +48,8 @@ import xyz.bboylin.universialtoast.UniversalToast;
 
 
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.btn_next)
+    Button btnNext;
     private TextView mPromptText;
 
     private TagGroup mDefaultTagGroup;
@@ -58,14 +61,12 @@ public class MainActivity extends AppCompatActivity {
     private TagsManager mTagsManager;
     Button btn_login;
     List<String> aTag = new ArrayList<>();
-    MultipleStatusView multipleStatusView;
+
 
     private BookPresenter bookPresenter = new BookPresenter(this);
 
     @BindView(R.id.tag_groups)
     public SuperTagGroup tag_groups;
-
-
     private TagGroup.OnTagClickListener mTagClickListener = new TagGroup.OnTagClickListener() {
         @Override
         public void onTagClick(String tag) {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         ImmersionBar.with(this).destroy(); //不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
         bookPresenter.onStop();
         RxBus.get().unregister(this);
+
     }
 
     public void addOneNewTag() {
@@ -100,15 +102,11 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconfontLayoutFactory(this, getDelegate()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).
                 init(); //初始化，默认透明状态栏和黑色导航栏
-        multipleStatusView = findViewById(R.id.multiple_status_view);
-        multipleStatusView.showEmpty();
-        multipleStatusView.postDelayed(
-                () -> multipleStatusView.showLoading()
-                , 3000);
-//        addOneNewTag();
 
+//        addOneNewTag();
 
         mContext = this;
         RxBus.get().register(this);
@@ -222,6 +220,11 @@ public class MainActivity extends AppCompatActivity {
     protected void launchTagEditorActivity() {
         Intent intent = new Intent(MainActivity.this, TagEditorActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_next)
+    public void onViewClicked() {
+        startActivity(new Intent(mContext,SecondActivity.class));
     }
 
     class MyTagGroupOnClickListener implements View.OnClickListener {
