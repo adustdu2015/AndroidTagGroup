@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         bookPresenter.onStop();
         RxBus.get().unregister(this);
     }
+
     public void addOneNewTag() {
         ITagBean.Builder builder = new ITagBean.Builder();
         ITagBean tagBean = builder.setTag("测试君")
@@ -96,21 +97,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LayoutInflaterCompat.setFactory(getLayoutInflater(),new IconfontLayoutFactory(this,getDelegate()));
+        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconfontLayoutFactory(this, getDelegate()));
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).
                 init(); //初始化，默认透明状态栏和黑色导航栏
-        setContentView(R.layout.activity_main);
         multipleStatusView = findViewById(R.id.multiple_status_view);
         multipleStatusView.showEmpty();
-        multipleStatusView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                multipleStatusView.showLoading();
-            }
-        },3000);
+        multipleStatusView.postDelayed(
+                () -> multipleStatusView.showLoading()
+                , 3000);
 //        addOneNewTag();
-
 
 
         mContext = this;
@@ -120,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 20; i++) {
             aTag.add("标签" + i);
         }
-        tag_cloud_view_8  = findViewById(R.id.tag_cloud_view_8);
+        tag_cloud_view_8 = findViewById(R.id.tag_cloud_view_8);
         tag_cloud_view_8.setTags(aTag);
 
-        RxView.clicks(btn_login).throttleFirst(1,TimeUnit.SECONDS)//防抖操作
-                .subscribe(v->{
+        RxView.clicks(btn_login).throttleFirst(1, TimeUnit.SECONDS)//防抖操作
+                .subscribe(v -> {
 
                     bookPresenter.getSearchBooks("金瓶梅", null, 0, 1);
                     UniversalToast.makeText(mContext, "点击了按钮", UniversalToast.LENGTH_SHORT).show();
@@ -177,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 postEvent();
             }
-        },2000);
+        }, 2000);
 
     }
 
@@ -185,15 +182,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void success(Book book) {
-            LogUtils.e( book);
+            LogUtils.e(book);
         }
 
         @Override
         public void failed(String result) {
-            Toast.makeText(MainActivity.this,result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
         }
     };
-
 
 
     @Override
@@ -235,43 +231,44 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void postEvent(){
+    public void postEvent() {
         RxBus.get().post("food");
-        RxBus.get().post("tag_value","return_value");
+        RxBus.get().post("tag_value", "return_value");
         RxBus.get().post(BusAction.EAT_TEST);
     }
 
     @Subscribe
     public void eat(String food) {
-        Log.e("food",food);
-    }
-    @Subscribe(tags = { @Tag("tag_value")})
-    public void testRxBus(String params) {
-        Log.e("aa",params);
+        Log.e("food", food);
     }
 
-    @Produce (thread = EventThread.IO, tags = { @Tag(BusAction.EAT_TEST) })
+    @Subscribe(tags = {@Tag("tag_value")})
+    public void testRxBus(String params) {
+        Log.e("aa", params);
+    }
+
+    @Produce(thread = EventThread.IO, tags = {@Tag(BusAction.EAT_TEST)})
     public ArrayList produceMoreFood() {
-        ArrayList list =new ArrayList<>();
+        ArrayList list = new ArrayList<>();
         list.add("This");
         list.add("is");
         list.add("breads!");
         return list;
     }
 
-    @Subscribe(thread = EventThread.MAIN_THREAD, tags = { @Tag(BusAction.EAT_TEST) } )
+    @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(BusAction.EAT_TEST)})
     public void eatMore(ArrayList foods) {
         // purpose
-        Log.e("foods",foods.size()+"");
-        Toast.makeText(this,"eatMore",Toast.LENGTH_SHORT).show();
+        Log.e("foods", foods.size() + "");
+        Toast.makeText(this, "eatMore", Toast.LENGTH_SHORT).show();
     }
 
 
-    void doHttp(){
+    void doHttp() {
         /**
          * 网络请求
          */
-        Observable<Book> observable =  new RetrofitHelper(mContext).getServer().getSearchBooks("金瓶梅", null, 0, 1);
+        Observable<Book> observable = new RetrofitHelper(mContext).getServer().getSearchBooks("金瓶梅", null, 0, 1);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Book>() {

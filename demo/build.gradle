@@ -51,12 +51,12 @@ dependencies {
     implementation ('com.jakewharton.rxbinding2:rxbinding:2.0.0') {
         exclude group: 'com.android.support'
     }
-    //状态栏解决
+    //状态栏解决  https://github.com/gyf-dev/ImmersionBar
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     implementation ('com.hwangjr.rxbus:rxbus:1.0.6') {
         exclude group: 'com.jakewharton.timber', module: 'timber'
     }
-    //toast
+    //toast通用，解决关闭通知栏之后的处理
 //    项目地址:https://github.com/bboylin/UniversalToast
     implementation 'com.github.bboylin:UniversalToast:v1.0.8'
 
@@ -64,4 +64,6 @@ dependencies {
     implementation 'com.github.kingideayou:tagcloudview:1.0.2'
     //标签
     implementation 'com.jacksen:supertaggroup:1.1'
+    //多种状态显示
+    implementation 'com.classic.common:multiple-status-view:1.5'
 }
