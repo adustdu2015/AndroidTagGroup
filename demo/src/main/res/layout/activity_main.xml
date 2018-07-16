@@ -31,6 +31,12 @@
             android:layout_height="wrap_content"
             android:text="下一页"
             />
+            <Button
+            android:id="@+id/btn_flex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="弹性盒子"
+            />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

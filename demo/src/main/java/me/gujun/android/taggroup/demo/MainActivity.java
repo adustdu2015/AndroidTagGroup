@@ -37,6 +37,7 @@ import me.gujun.android.taggroup.TagGroup;
 import me.gujun.android.taggroup.demo.db.TagsManager;
 import me.gujun.android.taggroup.demo.service.presenter.BookPresenter;
 import me.gujun.android.taggroup.demo.service.view.BookView;
+import me.gujun.android.taggroup.demo.ui.FlexBoxActivity;
 import me.gujun.android.taggroup.demo.util.IconfontLayoutFactory;
 import me.gujun.android.taggroup.demo.util.RxBus;
 import me.next.tagview.TagCloudView;
@@ -50,6 +51,8 @@ import xyz.bboylin.universialtoast.UniversalToast;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn_next)
     Button btnNext;
+    @BindView(R.id.btn_flex)
+    Button btnFlex;
     private TextView mPromptText;
 
     private TagGroup mDefaultTagGroup;
@@ -222,9 +225,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_next)
-    public void onViewClicked() {
-        startActivity(new Intent(mContext,SecondActivity.class));
+    @OnClick({R.id.btn_next, R.id.btn_flex})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_next:
+                startActivity(new Intent(mContext, SecondActivity.class));
+                break;
+            case R.id.btn_flex:
+                startActivity(new Intent(mContext, FlexBoxActivity.class));
+                break;
+        }
     }
 
     class MyTagGroupOnClickListener implements View.OnClickListener {

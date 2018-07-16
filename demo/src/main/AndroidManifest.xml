@@ -24,7 +24,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.gujun.android.taggroup.demo.MainActivity" />
         </activity>
-        <activity android:name=".SecondActivity"></activity>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ui.FlexBoxActivity"></activity>
     </application>
 
 </manifest>
