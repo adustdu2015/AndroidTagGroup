@@ -1,4 +1,4 @@
-package me.gujun.android.taggroup.demo;
+package me.gujun.android.taggroup.demo.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import com.classic.common.MultipleStatusView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.gujun.android.taggroup.demo.R;
 
 public class SecondActivity extends AppCompatActivity {
 

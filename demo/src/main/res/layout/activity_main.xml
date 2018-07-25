@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -29,13 +29,20 @@
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下一页"
+            android:text="多状态视图的显示"
             />
             <Button
             android:id="@+id/btn_flex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="弹性盒子"
+            android:text="弹性盒子实现标签云"
+            />
+            <Button
+            android:id="@+id/btn_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单步渐进recyclerView"
+            android:textAllCaps="false"
             />
             <TextView
                 android:layout_width="wrap_content"
@@ -50,125 +57,6 @@
                 android:text="@string/mic"
                 android:textColor="@color/color_333333"
                 android:textSize="26dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tags_default"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_prompt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/add_tags"
-                android:textColor="@android:color/darker_gray" />
-
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group"
-                style="@style/TagGroup"
-                android:layout_marginTop="10dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="#DDD" />
-
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group_beauty"
-                style="@style/TagGroup.Beauty_Red"
-                android:layout_marginTop="5dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="#DDD" />
-
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group_beauty_inverse"
-                style="@style/TagGroup.Beauty_Red.Inverse"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/tags_small"
-                android:textSize="14sp" />
-
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group_small"
-                style="@style/TagGroup.Small"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/tags_large"
-                android:textSize="18sp" />
-
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group_large"
-                style="@style/TagGroup.Large"
-                android:layout_marginTop="10dp" />
-            <me.next.tagview.TagCloudView
-                android:id="@+id/tag_cloud_view_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tcvItemBorderHorizontal="8dp"
-                app:tcvItemBorderVertical="6dp"
-                app:tcvBorder="8dp"
-                app:tcvSingleLine="false"
-                app:tcvCanTagClick="false"
-                />
-            <com.jacksen.taggroup.SuperTagGroup
-                android:id="@+id/tag_groups"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:clickable="false"
-                app:horizontal_spacing="5dp"
-                app:max_selected_count="1"
-                app:vertical_spacing="5dp">
-                <com.jacksen.taggroup.SuperTagView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:bg_color="@color/color_ffffff"
-                    app:border_color="#3CB4B4"
-                    android:clickable="false"
-                    android:text="肾内科"
-                    android:textSize="14sp"
-                    app:border_width="0.2dp"
-                    android:textColor="#3CB4B4"
-                    app:corner_radius="2dp"
-                    app:horizontal_padding="10dp"
-                    app:vertical_padding="6dp" />
-                <com.jacksen.taggroup.SuperTagView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:bg_color="@color/color_ffffff"
-                    android:textIsSelectable="false"
-                    app:border_color="#3CB4B4"
-                    android:text="心内科"
-                    android:textSize="14sp"
-                    app:border_width="0.2dp"
-                    android:textColor="#3CB4B4"
-                    app:corner_radius="2dp"
-                    android:clickable="false"
-                    app:horizontal_padding="10dp"
-                    app:vertical_padding="6dp" />
-
-            </com.jacksen.taggroup.SuperTagGroup>
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

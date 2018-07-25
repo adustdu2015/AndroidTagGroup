@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
     <com.classic.common.MultipleStatusView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        tools:context=".SecondActivity"
+        tools:context=".ui.SecondActivity"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/multiple_status_view"

@@ -2,9 +2,9 @@ package me.gujun.android.taggroup.demo.service.manager;
 
 import android.content.Context;
 
-import me.gujun.android.taggroup.demo.Book;
-import me.gujun.android.taggroup.demo.RetrofitHelper;
-import me.gujun.android.taggroup.demo.RetrofitService;
+import me.gujun.android.taggroup.demo.model.Book;
+import me.gujun.android.taggroup.demo.network.RetrofitHelper;
+import me.gujun.android.taggroup.demo.network.RetrofitService;
 import rx.Observable;
 
 public class DataManager {

@@ -1,5 +1,6 @@
-package me.gujun.android.taggroup.demo;
+package me.gujun.android.taggroup.demo.network;
 
+import me.gujun.android.taggroup.demo.model.Book;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

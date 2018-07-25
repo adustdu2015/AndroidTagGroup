@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.apkfuns.logutils.LogUtils;
 
-import me.gujun.android.taggroup.demo.Book;
+import me.gujun.android.taggroup.demo.model.Book;
 import me.gujun.android.taggroup.demo.service.manager.DataManager;
 import me.gujun.android.taggroup.demo.service.view.BookView;
 import me.gujun.android.taggroup.demo.service.view.View;
@@ -36,6 +36,9 @@ public class BookPresenter implements Presenter {
         mCompositeSubscription = new CompositeSubscription();
     }
 
+    /**
+     * 如果activity销毁了，则取消订阅
+     */
     @Override
     public void onStop() {
         if(mCompositeSubscription.hasSubscriptions()){
@@ -43,6 +46,10 @@ public class BookPresenter implements Presenter {
         }
     }
 
+    /**
+     * 绑定视图
+     * @param view
+     */
     @Override
     public void attachView(View view) {
         mBookView = (BookView)view;
