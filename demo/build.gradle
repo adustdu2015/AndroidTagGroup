@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId 'me.gujun.android.taggroup.demo'
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 26
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
     }
@@ -57,7 +57,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
     //状态栏解决  https://github.com/gyf-dev/ImmersionBar
-    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    implementation 'com.gyf.immersionbar:immersionbar:2.3.1'
     implementation('com.hwangjr.rxbus:rxbus:1.0.6') {
         exclude group: 'com.jakewharton.timber', module: 'timber'
     }
@@ -75,4 +75,7 @@ dependencies {
 
     //qmui
     implementation 'com.qmuiteam:qmui:1.1.5'
+//    smartRefreshlayout
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'//没有使用特殊Header，可以不加这行
 }

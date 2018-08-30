@@ -13,6 +13,7 @@ tags: retrofit,rxjava,学习MVP
  3. 创建Mvp，mvp有多个变形。
  4. 沉浸式状态栏  github地址:  https://github.com/gyf-dev/ImmersionBar
  5. 使用的第三种方法 
+ 6.smartRefreshLayout的使用
  
 
 ``` javascript
@@ -27,3 +28,4 @@ tags: retrofit,rxjava,学习MVP
 **总结一下，确实是最近写的Activity太冗长啦，而且逻辑也是不太好顺啦。
 只想说MVP就是想把网络请求的内容给了Presenter，并且Presenter将网络请求的结果传递给View展示。
 ,让View专注于视图的展示。**
+学习了一下SmartRefreshLayout的使用

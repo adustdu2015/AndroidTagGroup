@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements BookView{
     Button btnFlex;
     @BindView(R.id.btn_recycler)
     Button btn_recycler;
-    @BindView(R.id.tv_prompt)
-    TextView mPromptText;
     TagsManager mTagsManager;
     @BindView(R.id.btn_login)
     Button btn_login;
@@ -102,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements BookView{
     protected void onResume() {
         super.onResume();
         String[] tags = mTagsManager.getTags();
-        mPromptText.setVisibility((tags == null || tags.length == 0) ? View.VISIBLE : View.GONE);
     }
 
     @Override
