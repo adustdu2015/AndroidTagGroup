@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
+import com.gyf.barlibrary.ImmersionBar;
 import com.qmuiteam.qmui.widget.QMUIEmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -27,9 +28,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.gujun.android.taggroup.demo.R;
 import me.gujun.android.taggroup.demo.adapter.RecyclerViewSnapHelpAdapter;
+import me.gujun.android.taggroup.demo.base.BaseActivity;
 import me.gujun.android.taggroup.demo.util.DensityUtil;
 
-public class FlexBoxActivity extends AppCompatActivity {
+public class FlexBoxActivity extends BaseActivity {
 
     @BindView(R.id.flexbox_layout)
     FlexboxLayout flexboxLayout;
@@ -42,14 +44,15 @@ public class FlexBoxActivity extends AppCompatActivity {
     RecyclerViewSnapHelpAdapter adapter;
 
     private Context mContext;
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flex_box);
-        ButterKnife.bind(this);
+    public int getViewId() {
+        return R.layout.activity_flex_box;
+    }
+    @Override
+    protected void initViews() {
         mContext = this;
+        ImmersionBar.with(this).init();
+
         // 通过代码向FlexboxLayout添加View
         TextView textView = new TextView(this);
         textView.setText("TestLabel");
@@ -88,7 +91,15 @@ public class FlexBoxActivity extends AppCompatActivity {
         });
         //添加redreshLayout的自动刷新功能
         refreshLayout.autoRefresh();
-
     }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy();
+    }
+
 
 }
