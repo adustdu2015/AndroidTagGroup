@@ -57,6 +57,21 @@
                 android:text="@string/mic"
                 android:textColor="@color/color_333333"
                 android:textSize="26dp" />
+            <Button
+                android:id="@+id/btn_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="测试底部选项"
+                />
+              <Button
+                android:id="@+id/btn_fresco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="fresco使用"
+                />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

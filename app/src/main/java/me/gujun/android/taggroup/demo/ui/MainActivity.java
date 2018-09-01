@@ -37,7 +37,7 @@ import me.gujun.android.taggroup.demo.db.TagsManager;
 import me.gujun.android.taggroup.demo.model.Book;
 import me.gujun.android.taggroup.demo.service.presenter.BookPresenter;
 import me.gujun.android.taggroup.demo.service.view.BookView;
-import me.gujun.android.taggroup.demo.util.IconfontLayoutFactory;
+import me.gujun.android.taggroup.demo.ui.bottom.BottomTestActivity;
 import me.gujun.android.taggroup.demo.util.RxBus;
 import xyz.bboylin.universialtoast.UniversalToast;
 
@@ -52,6 +52,10 @@ public class MainActivity extends BaseActivity implements BookView{
     TagsManager mTagsManager;
     @BindView(R.id.btn_login)
     Button btn_login;
+    @BindView(R.id.btn_bottom)
+    Button btn_bottom;
+    @BindView(R.id.btn_fresco)
+    Button btn_fresco;
     List<String> aTag = new ArrayList<>();
     private BookPresenter bookPresenter = new BookPresenter(this);
 
@@ -69,10 +73,15 @@ public class MainActivity extends BaseActivity implements BookView{
         bookPresenter.attachView(this);
         //rxbinding 防抖操作
         RxView.clicks(btn_login).throttleFirst(1, TimeUnit.SECONDS)//防抖操作
-                .subscribe(v -> {
-                    bookPresenter.getSearchBooks("金瓶梅", null, 0, 1);
+                .subscribe(v -> bookPresenter.getSearchBooks("金瓶梅", null, 0, 1));
 
-                });
+        RxView.clicks(btn_bottom).throttleFirst(1,TimeUnit.SECONDS)
+                .subscribe(v->startActivity(new Intent(mContext, BottomTestActivity.class)));
+
+        RxView.clicks(btn_fresco).throttleFirst(1,TimeUnit.SECONDS)
+                .subscribe(v->startActivity(new Intent(mContext, FrescoActivity.class)));
+
+
         mTagsManager = TagsManager.getInstance(getApplicationContext());
         new Handler().postDelayed(() -> postEvent(), 2000);
     }
@@ -123,8 +132,10 @@ public class MainActivity extends BaseActivity implements BookView{
     }
 
     public void postEvent() {
+//        RxBus使用 第一个参数为tag
+
         RxBus.get().post("food");
-        RxBus.get().post("tag_value", "return_value");
+        RxBus.get().post("tag_value", "return_value");  //产生事件
         RxBus.get().post(BusAction.EAT_TEST);
     }
 
@@ -134,6 +145,10 @@ public class MainActivity extends BaseActivity implements BookView{
         Log.e("food", food);
     }
 
+    /**
+     * 处理对应的tag的标签
+     * @param params
+     */
     @Subscribe(tags = {@Tag("tag_value")})
     public void testRxBus(String params) {
         LogUtils.e("返回内容:"+params);

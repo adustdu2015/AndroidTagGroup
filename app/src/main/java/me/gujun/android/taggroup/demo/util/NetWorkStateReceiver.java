@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.widget.Toast;
+
+import com.apkfuns.logutils.LogUtils;
 
 /**
  * Created by Carson_Ho on 16/10/31.
@@ -52,6 +55,10 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
                 NetworkInfo networkInfo = connMgr.getNetworkInfo(networks[i]);
                 sb.append(networkInfo.getTypeName() + " connect is " + networkInfo.isConnected());
             }
+            LogUtils.e("打印网络结果");
+            LogUtils.e(sb.toString());
+            LogUtils.e(TextUtils.isEmpty(sb.toString()));
+            LogUtils.e("打印网络结果");
             Toast.makeText(context, sb.toString(),Toast.LENGTH_SHORT).show();
         }
     }

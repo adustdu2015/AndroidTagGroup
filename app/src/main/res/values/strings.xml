@@ -9,4 +9,8 @@
     <string name="edit" translatable="false">Edit</string>
     <string name="icons">&#xe6ec;</string>
     <string name="mic">&#xe64c;</string>
+    <string name="title_activity_bottom_test">BottomTestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

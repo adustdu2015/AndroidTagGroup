@@ -4,14 +4,14 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".App"
-        >
+        android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SecondActivity"
-            />
+        <activity android:name=".ui.SecondActivity" />
         <activity android:name=".ui.FlexBoxActivity" />
-        <activity android:name=".ui.RecyclerViewSnapHelpActivity"></activity>
-        <!--网络监听 start-->
-        <receiver android:name=".util.NetWorkStateReceiver">
-            <intent-filter>
-            <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-            <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
-        <!--网络监听 end-->
+        <activity android:name=".ui.RecyclerViewSnapHelpActivity" />
+        <!-- 网络监听 start -->
+        <!-- <receiver android:name=".util.NetWorkStateReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> -->
+
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- 网络监听 end -->
+        <activity
+            android:name=".ui.bottom.BottomTestActivity"
+            android:label="@string/title_activity_bottom_test" />
+        <activity android:name=".ui.FrescoActivity"></activity>
     </application>
 
 </manifest>
