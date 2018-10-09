@@ -3,33 +3,36 @@ package me.gujun.android.taggroup.demo.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.support.v4.view.LayoutInflaterCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
-import com.gyf.barlibrary.ImmersionBar;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.hwangjr.rxbus.annotation.Produce;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.gujun.android.taggroup.demo.R;
 import me.gujun.android.taggroup.demo.action.BusAction;
 import me.gujun.android.taggroup.demo.base.BaseActivity;
@@ -40,6 +43,8 @@ import me.gujun.android.taggroup.demo.service.view.BookView;
 import me.gujun.android.taggroup.demo.ui.bottom.BottomTestActivity;
 import me.gujun.android.taggroup.demo.util.RxBus;
 import xyz.bboylin.universialtoast.UniversalToast;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 
 public class MainActivity extends BaseActivity implements BookView{
@@ -56,11 +61,18 @@ public class MainActivity extends BaseActivity implements BookView{
     Button btn_bottom;
     @BindView(R.id.btn_fresco)
     Button btn_fresco;
+    @BindView(R.id.btn_kt)
+    Button btn_kt;
     List<String> aTag = new ArrayList<>();
     private BookPresenter bookPresenter = new BookPresenter(this);
 
     public static String EAT_MORE = "eat_more";
     private Context mContext;
+    private LoadService loadService;
+    private String URL ="https://mmbiz.qpic.cn/mmbiz/v1LbPPWiaSt4dWuaeGxpcaL2ibJFoNQQK7vF51bI79ZUqZon3A9oUeAibEvDWVsmxCiaWHnQ1NJYoYibJgTYyibNgVxA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1";
+    @BindView(R.id.iv_glide)
+    ImageView imv2;
+
     @Override
     public int getViewId() {
         return R.layout.activity_main;
@@ -68,6 +80,16 @@ public class MainActivity extends BaseActivity implements BookView{
     @Override
     protected void initViews() {
         mContext = this;
+        // 重新加载逻辑
+        loadService = LoadSir.getDefault().register(this);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadService.showSuccess();
+            }
+        },2000);
+
+
         RxBus.get().register(this);
         bookPresenter.onCreate();
         bookPresenter.attachView(this);
@@ -80,10 +102,19 @@ public class MainActivity extends BaseActivity implements BookView{
 
         RxView.clicks(btn_fresco).throttleFirst(1,TimeUnit.SECONDS)
                 .subscribe(v->startActivity(new Intent(mContext, FrescoActivity.class)));
-
+        RxView.clicks(btn_kt).throttleFirst(1,TimeUnit.SECONDS)
+                .subscribe(v->startActivity(new Intent(mContext,TestKotlinActivity.class)));
+        RequestOptions  options  = bitmapTransform(new RoundedCornersTransformation(45, 0,
+                        RoundedCornersTransformation.CornerType.ALL));
+        Glide.with(mContext)
+//                .load(R.drawable.demo)
+                .load(URL)
+                .apply(options)
+                .into(imv2);
 
         mTagsManager = TagsManager.getInstance(getApplicationContext());
         new Handler().postDelayed(() -> postEvent(), 2000);
+
     }
 
     @Override
@@ -105,7 +136,7 @@ public class MainActivity extends BaseActivity implements BookView{
         return false;
     }
 
-    @OnClick({R.id.btn_next, R.id.btn_flex,R.id.btn_recycler})
+    @OnClick({R.id.btn_next, R.id.btn_flex,R.id.btn_recycler,R.id.iv_glide})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_next:
@@ -116,6 +147,9 @@ public class MainActivity extends BaseActivity implements BookView{
                 break;
             case R.id.btn_recycler:
                 startActivity(new Intent(mContext, RecyclerViewSnapHelpActivity.class));
+                break;
+            case R.id.iv_glide:
+                startActivity(new Intent(mContext,GLES20Activity.class));
                 break;
         }
     }

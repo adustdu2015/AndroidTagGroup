@@ -9,17 +9,13 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     >
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/my_image_view"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        fresco:viewAspectRatio="1.33"
-        fresco:placeholderImage="@mipmap/g8"
-        fresco:roundedCornerRadius="5dp"
-        android:layout_marginTop="30dp"
-        />
     <ImageView
         android:id="@+id/iv_picasso"
         android:layout_width="120dp"
         android:layout_height="120dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

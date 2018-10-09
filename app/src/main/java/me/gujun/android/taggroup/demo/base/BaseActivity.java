@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.apkfuns.logutils.LogUtils;
 import com.gyf.barlibrary.ImmersionBar;
-
 import butterknife.ButterKnife;
 import me.gujun.android.taggroup.demo.R;
 import me.gujun.android.taggroup.demo.util.IconfontLayoutFactory;

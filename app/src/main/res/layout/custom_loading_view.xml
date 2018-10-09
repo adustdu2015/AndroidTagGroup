@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <View
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="#ff0000"
-        />
+ <ProgressBar
+     android:layout_width="40dp"
+     android:layout_height="40dp"
+     android:layout_centerInParent="true"
+     android:indeterminateTint="@color/qmui_config_color_red"
+     />
 </RelativeLayout>

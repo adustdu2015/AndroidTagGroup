@@ -18,6 +18,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.qmuiteam.qmui.widget.QMUIEmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -77,7 +78,6 @@ public class FlexBoxActivity extends BaseActivity {
         for(int i =0 ;i <10 ;i ++){
             list.add("测试数据:"+i);
         }
-
 
         refreshLayout.setOnRefreshListener(refreshlayout -> {
             Toast.makeText(mContext,"刷新完成",Toast.LENGTH_SHORT).show();

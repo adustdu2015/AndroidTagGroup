@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
         <!-- Customize your theme here. -->
         <!-- 配置Android提供的theme -->
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:textAppearanceListItemSmall">@style/QDTextAppearanceListItemSmall</item>
         <item name="android:textAppearanceListItem">@style/QDtextAppearanceListItem</item>
         <item name="android:listPreferredItemHeight">?attr/qmui_list_item_height_higher</item>
