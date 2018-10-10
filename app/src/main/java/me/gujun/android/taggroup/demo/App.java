@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.blankj.utilcode.util.Utils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.kingja.loadsir.core.LoadSir;
 
@@ -30,6 +31,8 @@ public class App extends Application {
                 .addCallback(new CustomCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .commit();
+//        工具类初始化
+        Utils.init(this);
 
     }
     protected void attachBaseContext(Context base){

@@ -2,9 +2,7 @@ package me.gujun.android.taggroup.demo.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
@@ -24,13 +22,13 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.gujun.android.taggroup.demo.R;
@@ -47,7 +45,7 @@ import xyz.bboylin.universialtoast.UniversalToast;
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 
-public class MainActivity extends BaseActivity implements BookView{
+public class MainActivity extends BaseActivity implements BookView {
     @BindView(R.id.btn_next)
     Button btnNext;
     @BindView(R.id.btn_flex)
@@ -63,13 +61,14 @@ public class MainActivity extends BaseActivity implements BookView{
     Button btn_fresco;
     @BindView(R.id.btn_kt)
     Button btn_kt;
-    List<String> aTag = new ArrayList<>();
+    @BindView(R.id.btn_ba)
+    Button btnBa;
     private BookPresenter bookPresenter = new BookPresenter(this);
 
     public static String EAT_MORE = "eat_more";
     private Context mContext;
     private LoadService loadService;
-    private String URL ="https://mmbiz.qpic.cn/mmbiz/v1LbPPWiaSt4dWuaeGxpcaL2ibJFoNQQK7vF51bI79ZUqZon3A9oUeAibEvDWVsmxCiaWHnQ1NJYoYibJgTYyibNgVxA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1";
+    private String URL = "https://mmbiz.qpic.cn/mmbiz/v1LbPPWiaSt4dWuaeGxpcaL2ibJFoNQQK7vF51bI79ZUqZon3A9oUeAibEvDWVsmxCiaWHnQ1NJYoYibJgTYyibNgVxA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1";
     @BindView(R.id.iv_glide)
     ImageView imv2;
 
@@ -77,19 +76,13 @@ public class MainActivity extends BaseActivity implements BookView{
     public int getViewId() {
         return R.layout.activity_main;
     }
+
     @Override
     protected void initViews() {
         mContext = this;
         // 重新加载逻辑
         loadService = LoadSir.getDefault().register(this);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadService.showSuccess();
-            }
-        },2000);
-
-
+        new Handler().postDelayed(() -> loadService.showSuccess(), 2000);
         RxBus.get().register(this);
         bookPresenter.onCreate();
         bookPresenter.attachView(this);
@@ -97,15 +90,16 @@ public class MainActivity extends BaseActivity implements BookView{
         RxView.clicks(btn_login).throttleFirst(1, TimeUnit.SECONDS)//防抖操作
                 .subscribe(v -> bookPresenter.getSearchBooks("金瓶梅", null, 0, 1));
 
-        RxView.clicks(btn_bottom).throttleFirst(1,TimeUnit.SECONDS)
-                .subscribe(v->startActivity(new Intent(mContext, BottomTestActivity.class)));
+        RxView.clicks(btn_bottom).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(v -> startActivity(new Intent(mContext, BottomTestActivity.class)));
 
-        RxView.clicks(btn_fresco).throttleFirst(1,TimeUnit.SECONDS)
-                .subscribe(v->startActivity(new Intent(mContext, FrescoActivity.class)));
-        RxView.clicks(btn_kt).throttleFirst(1,TimeUnit.SECONDS)
-                .subscribe(v->startActivity(new Intent(mContext,TestKotlinActivity.class)));
-        RequestOptions  options  = bitmapTransform(new RoundedCornersTransformation(45, 0,
-                        RoundedCornersTransformation.CornerType.ALL));
+        RxView.clicks(btn_fresco).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(v -> startActivity(new Intent(mContext, FrescoActivity.class)));
+        RxView.clicks(btn_kt).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(v -> startActivity(new Intent(mContext, TestKotlinActivity.class)));
+
+        RequestOptions options = bitmapTransform(new RoundedCornersTransformation(45, 0,
+                RoundedCornersTransformation.CornerType.ALL));
         Glide.with(mContext)
 //                .load(R.drawable.demo)
                 .load(URL)
@@ -136,11 +130,11 @@ public class MainActivity extends BaseActivity implements BookView{
         return false;
     }
 
-    @OnClick({R.id.btn_next, R.id.btn_flex,R.id.btn_recycler,R.id.iv_glide})
+    @OnClick({R.id.btn_next, R.id.btn_flex, R.id.btn_recycler, R.id.iv_glide})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_next:
-                startActivity(new Intent(mContext, SecondActivity.class));
+                startActivity(new Intent(mContext, MultStatusActivity.class));
                 break;
             case R.id.btn_flex:
                 startActivity(new Intent(mContext, FlexBoxActivity.class));
@@ -149,7 +143,7 @@ public class MainActivity extends BaseActivity implements BookView{
                 startActivity(new Intent(mContext, RecyclerViewSnapHelpActivity.class));
                 break;
             case R.id.iv_glide:
-                startActivity(new Intent(mContext,GLES20Activity.class));
+                startActivity(new Intent(mContext, GLES20Activity.class));
                 break;
         }
     }
@@ -175,19 +169,20 @@ public class MainActivity extends BaseActivity implements BookView{
 
     @Subscribe
     public void eat(String food) {
-        LogUtils.e("内容:"+food);
+        LogUtils.e("内容:" + food);
         Log.e("food", food);
     }
 
     /**
      * 处理对应的tag的标签
+     *
      * @param params
      */
     @Subscribe(tags = {@Tag("tag_value")})
     public void testRxBus(String params) {
-        LogUtils.e("返回内容:"+params);
+        LogUtils.e("返回内容:" + params);
         LogUtils.e(params.equals("return_value"));
-        LogUtils.e("返回内容:"+params);
+        LogUtils.e("返回内容:" + params);
         Log.e("aa", params);
     }
 
@@ -206,13 +201,12 @@ public class MainActivity extends BaseActivity implements BookView{
         Log.e("foods", foods.size() + "");
         Toast.makeText(this, "eatMore", Toast.LENGTH_SHORT).show();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         bookPresenter.onStop();
         RxBus.get().unregister(this);
     }
-
-
 }
 
