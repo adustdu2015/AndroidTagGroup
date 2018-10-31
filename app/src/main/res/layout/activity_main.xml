@@ -80,14 +80,12 @@
                 android:id="@+id/btn_kt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="测试kotlin"
+                android:text="拍照"
                 android:textAllCaps="false"/>
-            <Button
-                android:id="@+id/btn_ba"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试滑动返回"
-                android:textAllCaps="false"/>
+            <me.gujun.android.taggroup.demo.view.CustomView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:background="@color/white"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

@@ -4,10 +4,15 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +27,8 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +52,8 @@ public class FlexBoxActivity extends BaseActivity {
     RecyclerViewSnapHelpAdapter adapter;
 
     private Context mContext;
+    @BindView(R.id.vp_one)
+    ViewPager viewPager;
     @Override
     public int getViewId() {
         return R.layout.activity_flex_box;
@@ -91,7 +100,18 @@ public class FlexBoxActivity extends BaseActivity {
         });
         //添加redreshLayout的自动刷新功能
         refreshLayout.autoRefresh();
+        Context context = this;
+        context.getDir("",0).list(new filenameFilter());
     }
+    static class filenameFilter implements FilenameFilter {
+        public boolean accept(File dir, String name) {
+            if (name.toLowerCase().endsWith(".hs")) {
+                return true;
+            }
+            return false;
+        }
+    }
+
 
 
 

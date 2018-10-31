@@ -2,6 +2,9 @@ package me.gujun.android.taggroup.demo.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -61,8 +64,6 @@ public class MainActivity extends BaseActivity implements BookView {
     Button btn_fresco;
     @BindView(R.id.btn_kt)
     Button btn_kt;
-    @BindView(R.id.btn_ba)
-    Button btnBa;
     private BookPresenter bookPresenter = new BookPresenter(this);
 
     public static String EAT_MORE = "eat_more";
@@ -71,6 +72,7 @@ public class MainActivity extends BaseActivity implements BookView {
     private String URL = "https://mmbiz.qpic.cn/mmbiz/v1LbPPWiaSt4dWuaeGxpcaL2ibJFoNQQK7vF51bI79ZUqZon3A9oUeAibEvDWVsmxCiaWHnQ1NJYoYibJgTYyibNgVxA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1";
     @BindView(R.id.iv_glide)
     ImageView imv2;
+    PorterDuffXfermode xfermode;
 
     @Override
     public int getViewId() {
@@ -86,6 +88,9 @@ public class MainActivity extends BaseActivity implements BookView {
         RxBus.get().register(this);
         bookPresenter.onCreate();
         bookPresenter.attachView(this);
+        xfermode = new PorterDuffXfermode(PorterDuff.Mode.LIGHTEN);
+
+
         //rxbinding 防抖操作
         RxView.clicks(btn_login).throttleFirst(1, TimeUnit.SECONDS)//防抖操作
                 .subscribe(v -> bookPresenter.getSearchBooks("金瓶梅", null, 0, 1));
@@ -95,8 +100,10 @@ public class MainActivity extends BaseActivity implements BookView {
 
         RxView.clicks(btn_fresco).throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe(v -> startActivity(new Intent(mContext, FrescoActivity.class)));
-        RxView.clicks(btn_kt).throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe(v -> startActivity(new Intent(mContext, TestKotlinActivity.class)));
+
+        btn_kt.setText(50/100+"");
+//        RxView.clicks(btn_kt).throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe(v -> startActivity(new Intent(mContext, TestKotlinActivity.class)));
 
         RequestOptions options = bitmapTransform(new RoundedCornersTransformation(45, 0,
                 RoundedCornersTransformation.CornerType.ALL));

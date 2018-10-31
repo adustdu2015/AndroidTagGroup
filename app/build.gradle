@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'me.gujun.android.taggroup.demo'
         minSdkVersion 16
@@ -108,7 +108,10 @@ dependencies {
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
     //utils
     implementation 'com.blankj:utilcode:1.9.6'
-
+//    picasso转换
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 }
 repositories {
     mavenCentral()

@@ -8,14 +8,18 @@ package me.gujun.android.taggroup.demo.ui.bottom;
  */
 
 import android.Manifest;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.bumptech.glide.Glide;
@@ -40,8 +44,12 @@ public class BottomTestActivity extends BaseActivity {
     LinearLayout container;
     @BindView(R.id.multiple_status_view)
     MultipleStatusView multipleStatusView;
+    @BindView(R.id.tv_new)
+    TextView tvNew;
     private Context mContext;
     private RxPermissions premission;
+    private int width;
+    private int height;
 
     @Override
     public int getViewId() {
@@ -53,6 +61,8 @@ public class BottomTestActivity extends BaseActivity {
         mContext = this;
         multipleStatusView.showLoading();
         premission = new RxPermissions(this);
+        tvNew.setVisibility(View.VISIBLE);
+        tvNew.postDelayed(() -> tvNew.setVisibility(View.GONE),5000);
         multipleStatusView.postDelayed(() -> {
             if (NetworkUtils.isConnected()) {
                 multipleStatusView.showContent();
@@ -101,10 +111,4 @@ public class BottomTestActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }
