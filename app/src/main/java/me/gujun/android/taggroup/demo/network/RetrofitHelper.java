@@ -17,6 +17,7 @@ public class RetrofitHelper {
     GsonConverterFactory factory = GsonConverterFactory.create(new GsonBuilder().create());
     private static RetrofitHelper instance = null;
     private Retrofit mRetrofit = null;
+    private Retrofit mRetrofit2 = null;
     public static RetrofitHelper getInstance(Context context){
         if (instance == null){
             instance = new RetrofitHelper(context);
@@ -40,6 +41,17 @@ public class RetrofitHelper {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
+
+    public RetrofitService getWanServer(){
+        mRetrofit2 =  new Retrofit.Builder()
+                .baseUrl("https://www.wanandroid.com/")
+                .client(client)
+                .addConverterFactory(factory)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        return mRetrofit2.create(RetrofitService.class);
+    }
+
     public RetrofitService getServer(){
         return mRetrofit.create(RetrofitService.class);
     }

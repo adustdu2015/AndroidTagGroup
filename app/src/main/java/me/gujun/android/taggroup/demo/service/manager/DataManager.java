@@ -15,4 +15,5 @@ public class DataManager {
     public Observable<Book> getSearchBooks(String name, String tag, int start, int count){
         return mRetrofitService.getSearchBooks(name,tag,start,count);
     }
+
 }

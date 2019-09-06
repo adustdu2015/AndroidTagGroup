@@ -23,6 +23,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class BookPresenter implements Presenter {
     private DataManager manager;
+    //这是rxjava 1的操作。将多个请求统一取消掉。
     private CompositeSubscription mCompositeSubscription;
     private Context mContext;
     private BookView mBookView;
